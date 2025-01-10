@@ -1,0 +1,21 @@
+<header>
+  <!-- Hamburger menu (for both mobile and desktop) -->
+  <button class="hamburger-menu" (click)="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </button>
+
+  <!-- Side Panel (will open on click) -->
+  <div class="side-panel" [class.show]="isMenuOpen">
+    <!-- Close Button positioned at the right -->
+    <button class="close-btn" (click)="toggleMenu()">X</button>
+
+    <!-- Side panel content -->
+    <ul>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>

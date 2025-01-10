@@ -1,0 +1,177 @@
+/* Full-screen background with a gradient and a more dynamic look */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(45deg, #ff4b5c, #ff6e5b); /* Vibrant gradient background */
+  height: 100vh;
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+/* Animation for background gradient */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Centering the login box */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Modern styled login box */
+.login-box {
+  background: rgba(255, 255, 255, 0.9);  /* Slight transparency to make it look more elegant */
+  padding: 40px 35px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Title styling */
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+/* Form styling */
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* Labels for inputs */
+label {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* Input fields styling */
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #ff4b5c;  /* Vibrant red/pink for focus */
+  outline: none;
+}
+
+/* Invalid feedback styling */
+.invalid-feedback {
+  font-size: 12px;
+  color: #f44336;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+}
+
+/* Button styling */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff4b5c;  /* Red/Pink button */
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff6e5b;  /* Slightly darker on hover */
+}
+
+/* Error message */
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+/* Sign-up link styling */
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-link a {
+  color: #ff4b5c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 20px;
+    max-width: 90%;
+  }
+
+  h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+}

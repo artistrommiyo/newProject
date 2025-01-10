@@ -1,0 +1,185 @@
+/* Reset styling for consistent layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Poppins for a clean modern font */
+  background: linear-gradient(135deg, #ff6f61, #d32f2f); /* Gradient background */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+/* Centered Signup Container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Signup Box Styling - Further reduced height and shadow visibility */
+.signup-box {
+  background: white;
+  padding: 18px 22px; /* Further reduced padding for more compactness */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
+  width: 100%;
+  max-width: 420px; /* Increased max width of the card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.signup-box h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 16px; /* Reduced margin below header */
+  font-size: 28px; /* Modern and slightly larger font size */
+  font-weight: 600; /* Bold font weight */
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+}
+
+/* Form Group Styling - Increased width */
+form {
+  width: 100%; /* Ensure form takes full width */
+}
+
+.form-group {
+  width: 100%; /* Ensure the form group takes full width */
+  margin-bottom: 8px; /* Reduced margin between fields */
+}
+
+label {
+  display: block;
+  margin-bottom: 4px; /* Reduced margin between label and input */
+  color: #555;
+  font-size: 14px;
+  font-weight: 600; /* Bold label text */
+  letter-spacing: 0.3px;
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+}
+
+input {
+  width: 100%; /* Full width input */
+  padding: 8px 12px; /* Added left padding for input fields */
+  margin: 4px 0; /* Reduced margin between input fields */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif; /* Modern font family */
+  letter-spacing: 0.5px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder {
+  padding-left: 8px; /* Reduced padding to align better */
+}
+
+input:focus {
+  border: 1px solid #ff6f61;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+  font-family: 'Poppins', sans-serif; /* Modern font family */
+  font-weight: 600; /* Bold text */
+}
+
+button:hover {
+  background-color: #e64a45;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Error Message Styling */
+.invalid-feedback {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  letter-spacing: 0.5px;
+}
+
+/* Login Option */
+.signup-link {
+  text-align: center;
+  margin-top: 12px; /* Reduced space between button and login option */
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif; /* Modern font family */
+  font-weight: 500; /* Medium font weight */
+}
+
+.signup-link a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: 600; /* Bold text for link */
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .signup-box {
+    width: 85%;
+  }
+
+  .signup-box h2 {
+    font-size: 22px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-box {
+    width: 90%;
+  }
+
+  .signup-box h2 {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

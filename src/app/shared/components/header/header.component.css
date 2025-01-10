@@ -1,0 +1,121 @@
+/* Basic Navbar Styling */
+header {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #007bff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .hamburger-menu .bar {
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    transition: 0.3s;
+  }
+  
+  /* Side Panel Styling */
+  .side-panel {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden on the left */
+    width: 250px;
+    height: 100%;
+    background-color: #007bff;
+    color: white;
+    padding-top: 60px;
+    transition: 0.3s; /* Smooth transition for opening/closing */
+    z-index: 999;  /* Ensure it's above other content */
+  }
+  
+  .side-panel.show {
+    left: 0;  /* Open the side panel */
+  }
+  
+  .side-panel ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .side-panel li {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .side-panel a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+  }
+  
+  /* Attractive Hover Effect for Desktop */
+  .side-panel a:hover {
+    background-color: #ff9800; /* Bright, attractive orange color */
+    border-radius: 8px;  /* More rounded corners */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.6); /* Glow effect */
+  }
+  
+  /* Attractive Focus Effect for Mobile */
+  .side-panel a:focus, .side-panel a:hover {
+    background-color: #ff9800; /* Same hover color for mobile */
+    border-radius: 8px;  /* Rounded corners */
+    transform: scale(1.05); /* Zoom effect */
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.6); /* Glow effect */
+  }
+  
+  /* Close Button for the Side Panel */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #ff9800; /* Match hover color of links */
+  }
+  
+  /* Mobile and Tablet View */
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: flex; /* Show hamburger menu on mobile */
+    }
+  
+    .side-panel {
+      top: 0;
+      left: -250px;
+    }
+  
+    .side-panel a {
+      font-size: 18px; /* Smaller font size on mobile */
+    }
+  }
+  
+  /* For very small screens (e.g. mobile) */
+  @media (max-width: 480px) {
+    .side-panel a {
+      font-size: 16px; /* Adjust font size further for small screens */
+    }
+  }
+  

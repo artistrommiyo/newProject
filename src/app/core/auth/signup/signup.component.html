@@ -1,0 +1,57 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <h2>Create Account</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input id="firstname" type="text" formControlName="firstname" class="form-control" placeholder="Enter your first name" />
+        <div *ngIf="submitted && f['firstname']?.errors" class="invalid-feedback">
+          <div *ngIf="f['firstname']?.errors?.['required']">First Name is required</div>
+          <div *ngIf="f['firstname']?.errors?.['minlength']">First Name must be at least 2 characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input id="lastname" type="text" formControlName="lastname" class="form-control" placeholder="Enter your last name" />
+        <div *ngIf="submitted && f['lastname']?.errors" class="invalid-feedback">
+          <div *ngIf="f['lastname']?.errors?.['required']">Last Name is required</div>
+          <div *ngIf="f['lastname']?.errors?.['minlength']">Last Name must be at least 2 characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
+        <div *ngIf="submitted && f['email']?.errors" class="invalid-feedback">
+          <div *ngIf="f['email']?.errors?.['required']">Email is required</div>
+          <div *ngIf="f['email']?.errors?.['pattern']">Email format is invalid</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" formControlName="phone" class="form-control" placeholder="Enter your phone number" />
+        <div *ngIf="submitted && f['phone']?.errors" class="invalid-feedback">
+          <div *ngIf="f['phone']?.errors?.['required']">Phone number is required</div>
+          <div *ngIf="f['phone']?.errors?.['pattern']">Phone number is invalid</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="referralCode">Referral Code (Optional)</label>
+        <input id="referralCode" type="text" formControlName="referralCode" class="form-control" placeholder="Enter your referral code (if any)" />
+        <div *ngIf="submitted && f['referralCode']?.errors" class="invalid-feedback">
+          <div *ngIf="f['referralCode']?.errors?.['pattern']">Referral Code format is invalid</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+
+    <div class="signup-link">
+      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </div>
+  </div>
+</div>
