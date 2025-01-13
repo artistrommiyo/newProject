@@ -1,0 +1,45 @@
+<div class="otp-dialog">
+    <h2>{{ otpSent ? 'Enter OTP' : 'Verify Email' }}</h2>
+  
+    <p *ngIf="!otpSent">
+      We will send an OTP to the following email:
+      <strong>{{ data.email }}</strong>
+    </p>
+  
+    <form [formGroup]="otpForm" *ngIf="otpSent">
+      <div class="form-group">
+        <label for="otp">Enter OTP</label>
+        <input
+          id="otp"
+          type="text"
+          formControlName="otp"
+          placeholder="Enter OTP"
+          class="form-control"
+          (input)="invalidOtp = false"
+        />
+        <div *ngIf="otp?.invalid && (otp?.dirty || otp?.touched)" class="error">
+          <small *ngIf="otp?.errors?.['required']">OTP is required</small>
+          <small *ngIf="otp?.errors?.['pattern']">OTP must be 4-6 digits</small>
+        </div>
+        <!-- Invalid OTP message -->
+        <div *ngIf="invalidOtp" class="error">
+          <small>Invalid OTP. Please try again.</small>
+        </div>
+      </div>
+    </form>
+  
+    <div class="actions">
+      <button mat-button color="warn" (click)="closePopup()">Cancel</button>
+      <button mat-raised-button color="primary" *ngIf="!otpSent" (click)="sendOtp()">Send OTP</button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="otpSent"
+        [disabled]="otpForm.invalid"
+        (click)="verifyOtp()"
+      >
+        Verify OTP
+      </button>
+    </div>
+  </div>
+  

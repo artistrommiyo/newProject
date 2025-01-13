@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { OtpDialogComponent } from '../otp-dialog/otp-dialog.component';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,34 +13,62 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
-  signupError: string = '';  // Add this line
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       firstname: ['', [Validators.required, Validators.minLength(2)]],
       lastname: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}')]],
-      phone: ['', [Validators.required, Validators.pattern(/^\+?\d{1,4}?[ -]?\(?\d{1,4}?\)?[ -]?\d{1,4}?[ -]?\d{1,4}?[ -]?\d{1,4}$/)]],
-      referralCode: ['', [Validators.pattern(/^[a-zA-Z0-9]*$/)]]
-    });
+      mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Only 10-digit numbers
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      referralCode: ['', [Validators.pattern(/^[a-zA-Z0-9]*$/)]], // Optional
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      pincode: ['', [Validators.required, Validators.pattern(/^\d{5,6}$/)]], // 5-6 digit numbers
+      state: ['', [Validators.required]]
+    });    
   }
 
-  get f() { return this.signupForm.controls; }
+  get f() {
+    return this.signupForm.controls;
+  }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
-
-    // If form is invalid, return
+  
+    // Stop if form is invalid
     if (this.signupForm.invalid) {
       return;
     }
-
-    // Handle the successful form submission
+  
+    // Handle successful submission
     console.log('Signup successful:', this.signupForm.value);
-
-    // Example of handling an error (e.g., if signup fails):
-    // this.signupError = 'An error occurred during signup. Please try again later.';
+    this.openOtpDialog();
   }
+
+  openOtpDialog(): void {
+    const dialogRef = this.dialog.open(OtpDialogComponent, {
+      width: '400px',
+      maxWidth: '400px', // Limit to prevent overflow
+      disableClose: true, 
+      data: { email: this.signupForm.get('email')?.value } // Pass the email value
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.success) {
+        console.log('OTP Verified Successfully:', result.otp);
+        this.authService.login();
+        this.router.navigate(['/home']);
+      } else {  
+        console.log('OTP Verification Canceled');
+      }
+    });
+  }
+  
 }

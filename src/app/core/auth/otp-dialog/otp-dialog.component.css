@@ -1,0 +1,133 @@
+/* Popup Container */
+.otp-dialog {
+  max-width: 400px; /* Optimal width for desktop */
+  margin: 0 auto; /* Center horizontally */
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333; /* Default text color */
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Prevent scrollbars */
+  box-sizing: border-box; /* Ensure padding is included in width/height */
+}
+
+/* Header Styling */
+.otp-dialog h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e3a8a; /* Blue for header */
+  margin-bottom: 16px;
+}
+
+/* Paragraph Styling */
+.otp-dialog p {
+  font-size: 14px;
+  color: #555; /* Subtle text color */
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+/* Input Field Styling */
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e3a8a; /* Blue for labels */
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Prevent scroll issues */
+}
+
+.form-control:focus {
+  border-color: #f5b800; /* Gold for focus */
+  box-shadow: 0 0 4px rgba(245, 184, 0, 0.5); /* Subtle gold shadow */
+  outline: none;
+}
+
+/* Error Messages */
+.error {
+  color: #e63946; /* Red for error messages */
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+/* Action Buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+button {
+  flex: 1; /* Equal button widths */
+  max-width: 160px; /* Prevent buttons from being too wide */
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Cancel Button */
+button[color="warn"] {
+  background-color: #e63946; /* Red for cancel */
+  color: #fff;
+}
+button[color="warn"]:hover {
+  background-color: #d62839; /* Darker red on hover */
+}
+
+/* Primary Button */
+button[color="primary"] {
+  background-color: #1e3a8a; /* Blue for primary */
+  color: #fff;
+}
+button[color="primary"]:hover {
+  background-color: #172c6d; /* Darker blue on hover */
+}
+
+/* Disabled Button */
+button[disabled] {
+  background-color: #ccc;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .otp-dialog {
+     padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .actions {
+     flex-direction: column; /* Stack buttons vertically */
+     gap: 12px; /* Space between buttons on mobile */
+  }
+
+  button {
+     max-width: none; /* Allow buttons to take full width on mobile */
+     width: 100%;
+  }
+}

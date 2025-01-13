@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     // Redirect user to dashboard if they are already authenticated
     this.authService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       if (isAuthenticated) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       }
     });
   }
