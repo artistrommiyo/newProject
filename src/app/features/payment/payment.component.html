@@ -1,0 +1,18 @@
+<div class="payment-container">
+  <h1>Payment Details</h1>
+
+  <!-- Display Selected Plan Details -->
+  <div class="plan-details">
+    <h2>Selected Plan</h2>
+    <p><strong>Name:</strong> {{ selectedPlan?.name }}</p>
+    <p><strong>Description:</strong> {{ selectedPlan?.description }}</p>
+    <p><strong>Price:</strong> ₹{{ selectedPlan?.price }}</p>
+  </div>
+
+  <!-- Payment Options -->
+  <div class="payment-options">
+    <h3>Payment Options</h3>
+    <p>Select a payment method to complete your purchase.</p>
+    <button class="pay-button" (click)="proceedToPayment()">Proceed to Pay</button>
+  </div>
+</div>

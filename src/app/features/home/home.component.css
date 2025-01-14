@@ -1,131 +1,93 @@
-/* Home Page Container */
+/* Basic Styling for Home Page */
 .home-container {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f7fb;
-    min-height: 100vh;
-    padding: 80px 20px 20px; /* Added 80px padding at the top to create space from the header */
-    box-sizing: border-box;
-    
+  background-color: #f0f4f8; /* Soft background for the page */
+  text-align: center;
+  padding: 20px; /* Reduced padding */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  min-height: 100vh; /* Ensure it covers the full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* Include padding in width/height calculations */
+  overflow: hidden; /* Prevent unnecessary scroll */
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #003366; /* Dark Blue */
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Button Container */
+.button-container {
+  display: flex; /* Ensure buttons are in a single row */
+  justify-content: center;
+  gap: 10px; /* Add space between buttons */
+  flex-wrap: nowrap; /* Prevent buttons from wrapping */
+}
+
+/* Button Styling */
+button {
+  padding: 10px 20px; /* Reduced padding */
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+button:nth-of-type(1) {
+  background-color: #003366; /* Blue */
+  color: white;
+}
+
+button:nth-of-type(1):hover {
+  background-color: #005fa3; /* Slightly lighter blue on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 12px rgba(0, 95, 163, 0.5); /* Glow effect */
+}
+
+button:nth-of-type(2) {
+  background-color: #ffcc00; /* Gold */
+  color: #003366; /* Dark Blue */
+}
+
+button:nth-of-type(2):hover {
+  background-color: #ffb400; /* Darker gold on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 12px rgba(255, 195, 0, 0.5); /* Glow effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Adjusted font size for smaller screens */
   }
-  
-  /* Hero Section */
-  .hero-section {
-    background-color: #007bff;
-    color: white;
-    padding: 80px 20px;
-    text-align: center;
-    margin-bottom: 40px;
-    border-radius: 8px;
+
+  p {
+    font-size: 0.9rem;
   }
-  
-  .hero-section .hero-content h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px; /* Reduced padding for buttons on smaller screens */
   }
-  
-  .hero-section .hero-content p {
-    font-size: 18px;
-    margin-bottom: 20px;
+
+  /* Ensure buttons remain in a row even on smaller screens */
+  .button-container {
+    flex-wrap: nowrap; /* Prevent wrapping */
   }
-  
-  .hero-section .cta-button {
-    background-color: #ff9800;
-    color: white;
-    padding: 12px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .hero-section .cta-button:hover {
-    background-color: #f57c00;
-  }
-  
-  /* About Section */
-  .about-section {
-    background-color: #ffffff;
-    padding: 50px 20px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .about-section h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #007bff;
-  }
-  
-  .about-section p {
-    font-size: 18px;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #555;
-  }
-  
-  /* Features Section */
-  .features-section {
-    background-color: #fafafa;
-    padding: 50px 20px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .features-section h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #007bff;
-  }
-  
-  .features .feature {
-    margin: 20px;
-    display: inline-block;
-    width: 30%;
-    vertical-align: top;
-  }
-  
-  .features .feature h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #007bff;
-  }
-  
-  .features .feature p {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  footer p {
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  @media (max-width: 768px) {
-    .features .feature {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-  
-    .hero-section h1 {
-      font-size: 28px;
-    }
-  
-    .hero-section p {
-      font-size: 16px;
-    }
-  
-    .about-section p, .features .feature p {
-      font-size: 14px;
-    }
-  }
-  
+}

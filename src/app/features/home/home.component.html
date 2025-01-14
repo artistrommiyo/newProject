@@ -1,47 +1,13 @@
 <div class="home-container">
-    <header>
-      <!-- Add header with menu as before -->
-    </header>
-  
-    <div class="hero-section">
-      <div class="hero-content">
-        <h1>Welcome to Our Website!</h1>
-        <p>Your one-stop platform to discover and connect with the world around you. Join now to get started.</p>
-        <a href="/signup" class="cta-button">Create Account</a>
-      </div>
-    </div>
-  
-    <section class="about-section">
-      <div class="section-content">
-        <h2>About Us</h2>
-        <p>We are dedicated to providing the best experience for our users. Our platform offers a wide range of services that allow you to interact, learn, and grow in an engaging environment.</p>
-      </div>
-    </section>
-  
-    <section class="features-section">
-      <div class="section-content">
-        <h2>Our Features</h2>
-        <div class="features">
-          <div class="feature">
-            <h3>Feature One</h3>
-            <p>Explore amazing opportunities that can help you grow in various aspects of life.</p>
-          </div>
-          <div class="feature">
-            <h3>Feature Two</h3>
-            <p>Connect with others in a way that’s simple, fun, and effective.</p>
-          </div>
-          <div class="feature">
-            <h3>Feature Three</h3>
-            <p>Get insights and tools to help you achieve your goals faster.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <footer>
-      <div class="footer-content">
-        <p>&copy; 2025 Our Website | All Rights Reserved</p>
-      </div>
-    </footer>
+  <h1>Welcome to Our Network Marketing Platform</h1>
+  <p>Discover the best plans to grow your business.</p>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- Login Button (only visible if the user is NOT authenticated) -->
+    <button *ngIf="!isAuthenticated" (click)="login()">Login</button>
+
+    <!-- Explore Plans Button -->
+    <button (click)="explorePlans()">Explore Plans</button>
   </div>
-  
+</div>

@@ -1,0 +1,62 @@
+.payment-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #003366; /* Dark blue text */
+}
+
+.payment-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.plan-details {
+  background-color: #ffffff;
+  border: 2px solid #003366;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.plan-details h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+.plan-details p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.payment-options h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.pay-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #ffc107; /* Gold color */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.pay-button:hover {
+  background-color: #e0ac07; /* Slightly darker gold */
+  transform: scale(1.05);
+}

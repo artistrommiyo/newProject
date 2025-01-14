@@ -1,0 +1,110 @@
+/* Plans Container Styling */
+.plans-container {
+    text-align: center;
+    background-color: #f0f4f8; /* Soft background */
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Heading Styling */
+  .plans-container h1 {
+    font-size: 2.5rem;
+    color: #003366; /* Dark Blue */
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  /* Plan Cards Grid */
+  .plan {
+    display: inline-block;
+    background: #ffffff;
+    border: 2px solid #003366; /* Blue border */
+    border-radius: 10px;
+    width: 300px;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .plan:hover {
+    transform: translateY(-10px); /* Slight upward movement */
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.4); /* Stronger shadow on hover */
+  }
+  
+  /* Plan Title */
+  .plan h2 {
+    font-size: 1.8rem;
+    color: #003366;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  /* Plan Description */
+  .plan p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  /* Price Styling */
+  .plan p strong {
+    color: #ffcc00; /* Gold for price */
+    font-weight: 700;
+  }
+  
+  /* Buttons Styling */
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 10px 5px; /* Spacing between buttons */
+  }
+  
+  button:nth-of-type(1) {
+    background-color: #003366; /* Blue */
+    color: white;
+  }
+  
+  button:nth-of-type(1):hover {
+    background-color: #005fa3; /* Lighter blue */
+    transform: scale(1.05); /* Slight zoom */
+    box-shadow: 0 4px 12px rgba(0, 95, 163, 0.5);
+  }
+  
+  button:nth-of-type(2) {
+    background-color: #ffcc00; /* Gold */
+    color: #003366; /* Dark Blue */
+  }
+  
+  button:nth-of-type(2):hover {
+    background-color: #ffb400; /* Darker gold */
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 195, 0, 0.5);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .plans-container h1 {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+  
+    .plan {
+      width: 90%; /* Make cards full-width on smaller screens */
+      margin: 15px auto; /* Center the cards */
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 8px 16px; /* Adjust button padding for smaller screens */
+    }
+  }
+  

@@ -1,26 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-// import { AuthService } from '../../services/auth.service';  // Adjust path if needed
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  isMenuOpen = false;  // Boolean to track if the menu is open
+export class HeaderComponent implements OnInit {
+  isMenuOpen = false; // Tracks if the menu is open
+  isAuthenticated = false; // Tracks user's authentication status
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Method to toggle the side panel visibility (both open and close)
-  toggleMenu() {
+  ngOnInit(): void {
+    // Subscribe to authentication status
+    this.authService.isAuthenticated$.subscribe(
+      (status) => (this.isAuthenticated = status)
+    );
+  }
+
+  // Toggle menu visibility
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  // Method to handle logout
-  logout() {
-    this.authService.logout();  // Call logout method from AuthService
-    this.router.navigate(['/login']);  // Redirect to login page after logout
+  // Logout and navigate to login page
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    this.toggleMenu(); // Close menu after logout
   }
 }

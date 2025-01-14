@@ -1,0 +1,11 @@
+<div class="plans-container">
+    <h1>Our Plans</h1>
+    <div class="plan" *ngFor="let plan of plans">
+      <h2>{{ plan.name }}</h2>
+      <p>{{ plan.description }}</p>
+      <p><strong>Price:</strong> ₹{{ plan.price }}</p>
+      <button (click)="buyNow(plan)">Buy Now</button>
+
+    </div>
+  </div>
+  

@@ -19,4 +19,9 @@ export class AuthService {
   logout(): void {
     this._isAuthenticated.next(false); // Change to false when user logs out
   }
+
+  // Check current authentication status
+  get isAuthenticated(): boolean {
+    return this._isAuthenticated.value;
+  }
 }

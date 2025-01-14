@@ -8,11 +8,15 @@ import { AuthModule } from './core/auth/auth.module';
 import { HomeModule } from './features/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlanComponent } from './features/plan/plan.component';
+import { PaymentComponent } from './features/payment/payment.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PlanComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

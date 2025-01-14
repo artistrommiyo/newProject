@@ -1,21 +1,59 @@
 <header>
-  <!-- Hamburger menu (for both mobile and desktop) -->
+  <!-- Company Name -->
+  <div class="company-name">Money Mining</div>
+
+  <!-- Hamburger menu -->
   <button class="hamburger-menu" (click)="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
-  <!-- Side Panel (will open on click) -->
+  <!-- Side Panel -->
   <div class="side-panel" [class.show]="isMenuOpen">
-    <!-- Close Button positioned at the right -->
+    <!-- Close Button -->
     <button class="close-btn" (click)="toggleMenu()">X</button>
 
-    <!-- Side panel content -->
+    <!-- Side Panel Content -->
     <ul>
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-      <li><a (click)="logout()">Logout</a></li>
+      <li>
+        <a
+          routerLink="/home"
+          [routerLinkActive]="'active'"
+          (click)="toggleMenu()"
+          >Home</a
+        >
+      </li>
+      <li *ngIf="!isAuthenticated">
+        <a
+          routerLink="/login"
+          [routerLinkActive]="'active'"
+          (click)="toggleMenu()"
+          >Login</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/plans"
+          [routerLinkActive]="'active'"
+          (click)="toggleMenu()"
+          >Plans</a
+        >
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a
+          routerLink="/profile"
+          [routerLinkActive]="'active'"
+          (click)="toggleMenu()"
+          >Profile</a
+        >
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a
+          (click)="logout()"
+          >Logout</a
+        >
+      </li>
     </ul>
   </div>
 </header>
