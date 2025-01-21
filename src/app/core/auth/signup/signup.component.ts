@@ -22,8 +22,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      firstname: ['', [Validators.required, Validators.minLength(2)]],
-      lastname: ['', [Validators.required, Validators.minLength(2)]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}')]],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Only 10-digit numbers
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -39,31 +39,42 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-  
-    // Stop if form is invalid
-    if (this.signupForm.invalid) {
-      return;
+    onSubmit(): void {
+      this.submitted = true;
+    
+      // Stop if form is invalid
+      if (this.signupForm.invalid) {
+        return;
+      }
+      console.log(this.signupForm.value);
+      this.authService.signUp(this.signupForm.value).subscribe(
+        (resr) => {
+      //  console.log('Signup successful:', this.signupForm.value);
+          console.log("Response from sign up API:", resr.data);
+          this.openOtpDialog();
+        },
+        (err) => {
+          console.error("Error during signup: ", err);
+        }
+      );
+      // Handle successful submission (if needed, you can add further logic here)
     }
-  
-    // Handle successful submission
-    console.log('Signup successful:', this.signupForm.value);
-    this.openOtpDialog();
-  }
+    
 
+ 
   openOtpDialog(): void {
+    const email: string = this.signupForm.get('email')?.value; // Get email from form
     const dialogRef = this.dialog.open(OtpDialogComponent, {
       width: '400px',
       maxWidth: '400px', // Limit to prevent overflow
       disableClose: true, 
-      data: { email: this.signupForm.get('email')?.value } // Pass the email value
+      data: { email: email } // Pass email value from form
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result?.success) {
-        console.log('OTP Verified Successfully:', result.otp);
-        this.authService.login();
+        //console.log('OTP Verified Successfully:', result.otp);
+        this.authService.login("test", "test");
         this.router.navigate(['/home']);
       } else {  
         console.log('OTP Verification Canceled');

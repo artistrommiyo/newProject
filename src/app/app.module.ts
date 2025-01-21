@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlanComponent } from './features/plan/plan.component';
 import { PaymentComponent } from './features/payment/payment.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { PaymentComponent } from './features/payment/payment.component';
     AuthModule,
     HomeModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
