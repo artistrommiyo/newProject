@@ -8,78 +8,155 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
+  userDetails: any;
+  isAlreadyLogin: boolean = false;
+  isEditing: boolean = false; // To toggle edit mode
 
   constructor(
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    // Fetch user details
+    this.userDetails = this.authService.getUserDetails();
+    this.isAlreadyLogin = this.userDetails ? true : false;
+
+    // Initialize form with user details if logged in, else empty
     this.signupForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}')]],
-      mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Only 10-digit numbers
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      referralCode: ['', [Validators.pattern(/^[a-zA-Z0-9]*$/)]], // Optional
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      pincode: ['', [Validators.required, Validators.pattern(/^\d{5,6}$/)]], // 5-6 digit numbers
-      state: ['', [Validators.required]]
-    });    
+      firstName: [
+        this.userDetails?.firstName || '',
+        [Validators.required, Validators.minLength(2)],
+      ],
+      lastName: [
+        this.userDetails?.lastName || '',
+        [Validators.required, Validators.minLength(2)],
+      ],
+      email: [
+        this.userDetails?.email || '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(
+            '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'
+          ),
+        ],
+      ],
+      mobile: [
+        this.userDetails?.mobile || '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      password: [
+        this.isAlreadyLogin ? this.userDetails?.password : '', // Password should be empty for logged-in users
+        this.isAlreadyLogin ? [] : [Validators.required, Validators.minLength(6)],
+      ],
+      referralCode: [
+        this.userDetails?.referralCode || '',
+        [Validators.pattern(/^[a-zA-Z0-9]*$/)],
+      ],
+      address: [this.userDetails?.address || '', [Validators.required]],
+      city: [this.userDetails?.city || '', [Validators.required]],
+      pincode: [
+        this.userDetails?.pincode || '',
+        [Validators.required, Validators.pattern(/^\d{5,6}$/)],
+      ],
+      state: [this.userDetails?.state || '', [Validators.required]],
+    });
+
+    if (this.isAlreadyLogin) {
+      this.signupForm.disable(); // Disable the form if the user is logged in
+    }
   }
 
+  // Getter for form controls
   get f() {
     return this.signupForm.controls;
   }
 
-    onSubmit(): void {
-      this.submitted = true;
-    
-      // Stop if form is invalid
-      if (this.signupForm.invalid) {
-        return;
-      }
-      console.log(this.signupForm.value);
-      this.authService.signUp(this.signupForm.value).subscribe(
-        (resr) => {
-      //  console.log('Signup successful:', this.signupForm.value);
-          console.log("Response from sign up API:", resr.data);
-          this.openOtpDialog();
+  // Create account submission
+  onSubmit(): void {
+    this.submitted = true;
+    if (this.signupForm.invalid) {
+      return;
+    }
+
+    if (this.isAlreadyLogin) {
+      // Update user profile
+      const userInfo = this.signupForm.value;
+      userInfo.password = this.userDetails.password;
+      userInfo.id = this.userDetails.id;
+      userInfo.email = this.userDetails.email;
+      this.authService.updateUser(this.signupForm.value).subscribe(
+        (res) => {
+          if (res.status == 200 && res.payLoad) {
+            this.userDetails = res.payLoad;
+            this.authService.updateUserDetails(this.userDetails);
+            this.isEditing = false;
+            this.signupForm.disable();
+          }
         },
         (err) => {
-          console.error("Error during signup: ", err);
+          console.error('Error updating profile:', err);
         }
       );
-      // Handle successful submission (if needed, you can add further logic here)
+    } else {
+      // Create new account
+      this.authService.createUser(this.signupForm.value).subscribe(
+        (res) => {
+          if (res.status == 200 && res.payLoad) {
+            this.userDetails = res.payLoad;
+            this.openOtpDialog();
+          }
+        },
+        (err) => {
+          console.error('Error during signup:', err);
+        }
+      );
     }
-    
+  }
 
- 
+  // Open OTP Dialog
   openOtpDialog(): void {
-    const email: string = this.signupForm.get('email')?.value; // Get email from form
+    const email: string = this.signupForm.get('email')?.value;
     const dialogRef = this.dialog.open(OtpDialogComponent, {
       width: '400px',
-      maxWidth: '400px', // Limit to prevent overflow
-      disableClose: true, 
-      data: { email: email } // Pass email value from form
+      maxWidth: '400px',
+      disableClose: true,
+      data: { email: email },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result?.success) {
-        //console.log('OTP Verified Successfully:', result.otp);
-        this.authService.login("test", "test");
+        this.authService.login(this.userDetails);
         this.router.navigate(['/home']);
-      } else {  
+      } else {
         console.log('OTP Verification Canceled');
       }
     });
   }
-  
+
+  // Enable edit mode
+  enableEdit(): void {
+    this.isEditing = true;
+    this.signupForm.enable();
+    this.signupForm.get('email')?.disable();
+    this.signupForm.get('referralCode')?.disable();
+    this.signupForm.get('referralCode')?.disable(); 
+    this.signupForm.get('password')?.disable(); // Keep email non-editable
+  }
+
+  // Cancel editing
+  cancelEdit(): void {
+    this.isEditing = false;
+    this.signupForm.patchValue(this.userDetails); // Reset to original values
+    this.signupForm.disable();
+  }
 }
+

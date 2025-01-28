@@ -31,15 +31,11 @@ export class OtpDialogComponent implements OnInit {
 
 // Send OTP logic
 sendOtp(): void {
-  this.otpSent = true;
-  // Ensure email is passed properly
-  const email: string = this.data.email;  // data.email from MAT_DIALOG_DATA
-  console.log("Sending OTP to email:", email);
-  // Call the API to send OTP
-  this.authService.sendOtp(email).subscribe(
+  this.authService.sendOtp(this.data.email).subscribe(
     (response) => {
-      console.log('OTP sent successfully to:', email);
-      //this.otpSent = true; // Update OTP sent status
+      if(response.status == 200){
+        this.otpSent = true;
+      }
     },
     (error) => {
       console.error("Error sending OTP:", error);
@@ -50,19 +46,12 @@ sendOtp(): void {
   // Verify OTP logic
   verifyOtp(): void {
     if (this.otpForm.valid) {
-      const email: string = this.data.email;
-      const otp = this.otpForm.value.otp;
-      this.authService.verifyOtp(email,otp).subscribe(
+      this.authService.verifyOtp(this.data.email,this.otpForm.value.otp).subscribe(
         (response) => {
-          console.log('OTP sent successfully to:', response.data);
-          //this.otpSent = true; // Update OTP sent status
           if (response.status === 200 && response.message === 'User verify successfully'){
-            console.log('OTP Verified:', otp);
-            // Add API call for verifying OTP here
-            this.dialogRef.close({ success: true, otp: otp }); // Close popup and return success
+            this.dialogRef.close({ success: true}); // Close popup and return success
           } else {
             this.invalidOtp = true; // Set invalid OTP flag
-            console.error('Invalid OTP');
           }
         },
         (error) => {

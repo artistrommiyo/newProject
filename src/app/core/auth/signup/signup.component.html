@@ -1,10 +1,11 @@
 <div class="signup-container">
   <div class="signup-box">
-    <h2>Create Account</h2>
+    <h2>{{ isAlreadyLogin ? 'Your Profile' : 'Create Account' }}</h2>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input id="firstName" type="text" formControlName="firstName" class="form-control" placeholder="Enter your first name" />
+        <input id="firstName" type="text" formControlName="firstName" class="form-control"
+          placeholder="Enter your first name" />
         <div *ngIf="submitted && f['firstName']?.errors" class="invalid-feedback">
           <div *ngIf="f['firstName']?.errors?.['required']">First Name is required</div>
           <div *ngIf="f['firstName']?.errors?.['minlength']">First Name must be at least 2 characters</div>
@@ -13,7 +14,8 @@
 
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input id="lastName" type="text" formControlName="lastName" class="form-control" placeholder="Enter your last name" />
+        <input id="lastName" type="text" formControlName="lastName" class="form-control"
+          placeholder="Enter your last name"/>
         <div *ngIf="submitted && f['lastName']?.errors" class="invalid-feedback">
           <div *ngIf="f['lastName']?.errors?.['required']">Last Name is required</div>
           <div *ngIf="f['lastName']?.errors?.['minlength']">Last Name must be at least 2 characters</div>
@@ -22,7 +24,8 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter your email"
+        [disabled]="isAlreadyLogin"/>
         <div *ngIf="submitted && f['email']?.errors" class="invalid-feedback">
           <div *ngIf="f['email']?.errors?.['required']">Email is required</div>
           <div *ngIf="f['email']?.errors?.['pattern']">Email format is invalid</div>
@@ -31,17 +34,19 @@
 
       <div class="form-group">
         <label for="mobile">Mobile</label>
-        <input id="mobile" type="tel" formControlName="mobile" class="form-control" placeholder="Enter your mobile number" />
+        <input id="mobile" type="tel" formControlName="mobile" class="form-control"
+          placeholder="Enter your mobile number" />
         <div *ngIf="submitted && f['mobile']?.errors" class="invalid-feedback">
           <div *ngIf="f['mobile']?.errors?.['required']">Mobile number is required</div>
           <div *ngIf="f['mobile']?.errors?.['pattern']">Mobile number must be a valid 10-digit number</div>
         </div>
       </div>
-      
+
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" type="password" formControlName="password" class="form-control" placeholder="Enter your password" />
+        <input id="password" type="password" formControlName="password" class="form-control"
+          placeholder="Enter your password" />
         <div *ngIf="submitted && f['password']?.errors" class="invalid-feedback">
           <div *ngIf="f['password']?.errors?.['required']">Password is required</div>
           <div *ngIf="f['password']?.errors?.['minlength']">Password must be at least 6 characters</div>
@@ -50,7 +55,8 @@
 
       <div class="form-group">
         <label for="referralCode">Referral Code (Optional)</label>
-        <input id="referralCode" type="text" formControlName="referralCode" class="form-control" placeholder="Enter your referral code (if any)" />
+        <input id="referralCode" type="text" formControlName="referralCode" class="form-control"
+          placeholder="Enter your referral code (if any)" />
         <div *ngIf="submitted && f['referralCode']?.errors" class="invalid-feedback">
           <div *ngIf="f['referralCode']?.errors?.['pattern']">Referral Code format is invalid</div>
         </div>
@@ -58,7 +64,8 @@
 
       <div class="form-group">
         <label for="address">Address</label>
-        <input id="address" type="text" formControlName="address" class="form-control" placeholder="Enter your address" />
+        <input id="address" type="text" formControlName="address" class="form-control"
+          placeholder="Enter your address" />
         <div *ngIf="submitted && f['address']?.errors" class="invalid-feedback">
           <div *ngIf="f['address']?.errors?.['required']">Address is required</div>
         </div>
@@ -74,7 +81,8 @@
 
       <div class="form-group">
         <label for="pincode">Pincode</label>
-        <input id="pincode" type="number" formControlName="pincode" class="form-control" placeholder="Enter your pincode" />
+        <input id="pincode" type="number" formControlName="pincode" class="form-control"
+          placeholder="Enter your pincode" />
         <div *ngIf="submitted && f['pincode']?.errors" class="invalid-feedback">
           <div *ngIf="f['pincode']?.errors?.['required']">Pincode is required</div>
           <div *ngIf="f['pincode']?.errors?.['pattern']">Pincode must be a valid 5 or 6-digit number</div>
@@ -90,10 +98,18 @@
       </div>
 
 
-      <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Create Account</button>      
+      <button *ngIf="!isAlreadyLogin || isEditing" class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">
+        {{ isAlreadyLogin ? 'Save' : 'Create Account' }}
+      </button>
+      <button *ngIf="isAlreadyLogin && !isEditing" class="btn btn-secondary" type="button" (click)="enableEdit()">
+        Edit Profile
+      </button>
+      <button *ngIf="isAlreadyLogin && isEditing" class="btn btn-secondary" type="button" (click)="cancelEdit()">
+        Cancel
+      </button>
     </form>
 
-    <div class="signup-link">
+    <div class="signup-link" *ngIf="!isAlreadyLogin">
       <p>Already have an account? <a routerLink="/login">Login here</a></p>
     </div>
   </div>

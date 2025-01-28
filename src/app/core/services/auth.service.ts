@@ -9,74 +9,88 @@ export class AuthService {
   private _isAuthenticated = new BehaviorSubject<boolean>(false); // Default value is false
   public isAuthenticated$: Observable<boolean> = this._isAuthenticated.asObservable();
 
-   private baseUrl: string = 'http://localhost:9101';
+  private baseUrl: string = 'http://64.227.174.34:9101';
+
+  private _userDetails = new BehaviorSubject<any>(null); // User details observable
+  public userDetails$: Observable<any> = this._userDetails.asObservable();
 
   
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient) {
+    // Initialize user details from localStorage (if available)
+    const storedUser = localStorage.getItem('userDetails');
+    if (storedUser) {
+      this._userDetails.next(JSON.parse(storedUser));
+      this._isAuthenticated.next(true);
+    }
+  }
 
   //Set the user authentication state (login)
-  /* login(): void {
+   login(updatedDetails: any): void {
      this._isAuthenticated.next(true); // Change to true when user logs in
-   }*/
+     this.storeUserDetails(updatedDetails); 
+   }
   
-  login(email: string, password: string): Observable<any> {
-    const url = this.baseUrl + '/api/auth/login'; // Complete login endpoint
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Headers
-    this._isAuthenticated.next(true);
-    // Prepare request payload
+  checkLogin(email: string, password: string): Observable<any> {
+    const url = this.baseUrl + '/api/auth/login'; // Complete login endpoint 
     const body = { email, password };
-
-    // Make the POST request
-    return this.http.post(url, body, { headers });
+    return this.http.post(url, body);
   }
 
-  signUp(user:any):Observable<any>{
+  createUser(user:any):Observable<any>{
     const url = this.baseUrl + '/moneymining/api/add/user';
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log("user in service class : ", user);
-    return this.http.post<any>(url,user,{ headers: headers });
+    return this.http.post<any>(url,user);
   }
-  /*
-//* Method to send OTP
-sendOtp(email: string): Observable<any> {
-    // URL with query parameter for email
-    const url = `${this.baseUrl}/moneymining/api/send/otp?email=${encodeURIComponent(email)}`;
-    
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log("Sending OTP to email: ", email);
-
-    // Send empty body because data is in query parameters
-    return this.http.post<any>(url, {}, { headers: headers });
-}*/
-
-sendOtp(email: string): Observable<any> {
-  const otpType = 'o';
-
-  const url = this.baseUrl +`/moneymining/api/send/otp?email=${email}&otpType=${otpType}`;
-  //const url = `${this.baseUrl}/moneymining/api/send/otp?email=${email}`;
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  console.log("Sending OTP to email: ", email);
-
-  // Send POST request (with empty body)
-  return this.http.post<any>(url, {}, { headers: headers });
-}
-
-// Method to verify OTP
-verifyOtp(email:string, otp: string): Observable<any> {
-  const url = this.baseUrl +`/moneymining/api/enabled/user?email=${email}&otp=${otp}`;
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  console.log("Verifying OTP: ", otp);
-  return this.http.post<any>(url, {}, { headers: headers });
-}
 
 
-  // Set the user authentication state (logout)
-  logout(): void {
-    this._isAuthenticated.next(false); // Change to false when user logs out
+  sendOtp(email: string): Observable<any> {
+    const otpType = 'o';
+    const url = this.baseUrl +`/moneymining/api/send/otp?email=${email}&otpType=${otpType}`;
+    return this.http.post<any>(url, {});
+  }
+
+  // Method to verify OTP
+  verifyOtp(email:string, otp: string): Observable<any> {
+    const url = this.baseUrl +`/moneymining/api/enabled/user?email=${email}&otp=${otp}`;
+    return this.http.post<any>(url, {});
   }
 
   // Check current authentication status
   get isAuthenticated(): boolean {
     return this._isAuthenticated.value;
+  }
+
+
+  // Method to handle logout
+  logout(): void {
+    this._isAuthenticated.next(false);
+    this._userDetails.next(null);
+    localStorage.removeItem('userDetails'); // Remove from localStorage
+  }
+
+  // Store user details in localStorage and update observable
+  private storeUserDetails(userDetails: any): void {
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    this._userDetails.next(userDetails);
+  }
+
+  // Get user details
+  getUserDetails(): any {
+    return this._userDetails.value;
+  }
+
+  // Update user details in localStorage and observable
+  updateUserDetails(updatedDetails: any): void {
+    this.storeUserDetails(updatedDetails);
+  }
+
+  updateUser(user:any):Observable<any>{
+    const url = this.baseUrl + '/moneymining/api/update/user';
+    return this.http.put<any>(url,user);
+  }
+
+  // Get user role
+  getUserRole(): string | null {
+    const userDetails = this.getUserDetails();
+    return userDetails?.role?.roleName || null; // Return role or null
   }
 }

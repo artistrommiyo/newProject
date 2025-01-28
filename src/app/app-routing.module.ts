@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent }, 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'profile', component: SignupComponent },
   { path: '**', redirectTo: '/home' }, // Wildcard route redirects to Home
 ];
 
