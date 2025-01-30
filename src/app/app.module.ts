@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlanComponent } from './features/plan/plan.component';
 import { PaymentComponent } from './features/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TermsPolicyComponent } from './features/terms-policy/terms-policy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlanComponent,
     PaymentComponent,
+    TermsPolicyComponent,
   ],
   imports: [
     BrowserModule,

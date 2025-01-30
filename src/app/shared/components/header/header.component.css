@@ -10,7 +10,18 @@ header {
   font-family: 'Arial', sans-serif;
 }
 
-/* Company Name */
+/* Logo and Company Name */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.company-logo {
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
+  margin-right: 10px;
+}
+
 .company-name {
   font-size: 24px;
   font-weight: bold;
@@ -111,6 +122,11 @@ header {
     font-size: 20px;
   }
 
+  .company-logo {
+    width: 35px; /* Smaller logo for mobile */
+    height: 35px;
+  }
+
   .hamburger-menu {
     display: flex;
   }
@@ -123,6 +139,11 @@ header {
 @media (max-width: 480px) {
   .company-name {
     font-size: 18px;
+  }
+
+  .company-logo {
+    width: 30px; /* Even smaller for mobile */
+    height: 30px;
   }
 
   .side-panel a {

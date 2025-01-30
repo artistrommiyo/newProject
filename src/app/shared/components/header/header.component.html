@@ -1,6 +1,9 @@
 <header>
-  <!-- Company Name -->
-  <div class="company-name">Money Mining</div>
+  <!-- Logo and Company Name -->
+  <div class="logo-container">
+    <img src="assets/logo.png" alt="Company Logo" class="company-logo" />
+    <div class="company-name">Money Mining</div>
+  </div>
 
   <!-- Hamburger menu -->
   <button class="hamburger-menu" (click)="toggleMenu()">
@@ -17,42 +20,19 @@
     <!-- Side Panel Content -->
     <ul>
       <li>
-        <a
-          routerLink="/home"
-          [routerLinkActive]="'active'"
-          (click)="toggleMenu()"
-          >Home</a
-        >
+        <a routerLink="/home" [routerLinkActive]="'active'" (click)="toggleMenu()">Home</a>
       </li>
       <li *ngIf="!isAuthenticated">
-        <a
-          routerLink="/login"
-          [routerLinkActive]="'active'"
-          (click)="toggleMenu()"
-          >Login</a
-        >
+        <a routerLink="/login" [routerLinkActive]="'active'" (click)="toggleMenu()">Login</a>
       </li>
       <li>
-        <a
-          routerLink="/plans"
-          [routerLinkActive]="'active'"
-          (click)="toggleMenu()"
-          >Plans</a
-        >
+        <a routerLink="/plans" [routerLinkActive]="'active'" (click)="toggleMenu()">Plans</a>
       </li>
       <li *ngIf="isAuthenticated">
-        <a
-          routerLink="/profile"
-          [routerLinkActive]="'active'"
-          (click)="toggleMenu()"
-          >Profile</a
-        >
+        <a routerLink="/profile" [routerLinkActive]="'active'" (click)="toggleMenu()">Profile</a>
       </li>
       <li *ngIf="isAuthenticated">
-        <a
-          (click)="logout()"
-          >Logout</a
-        >
+        <a (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>
