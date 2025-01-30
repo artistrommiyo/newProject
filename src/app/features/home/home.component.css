@@ -2,7 +2,7 @@
 /* ✅ Home Component Styling */
 /* ========================= */
 .home-container {
-  background: url('/assets/coin.png') no-repeat center center;
+  /* background: url('/assets/coin.png') no-repeat center center; */
   background-size: cover;
   text-align: center;
   padding: 20px; /* Adjusted padding to avoid overlap */
