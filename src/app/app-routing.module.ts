@@ -6,6 +6,7 @@ import { HomeComponent } from './features/home/home.component';
 import { PlanComponent } from './features/plan/plan.component';
 import { PaymentComponent } from './features/payment/payment.component';
 import { TermsPolicyComponent } from './features/terms-policy/terms-policy.component';
+import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route to Home
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: SignupComponent },
   { path: 'terms-policy', component: TermsPolicyComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '**', redirectTo: '/home' }, // Wildcard route redirects to Home
 ];
 

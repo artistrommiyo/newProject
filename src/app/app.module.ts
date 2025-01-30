@@ -12,6 +12,7 @@ import { PlanComponent } from './features/plan/plan.component';
 import { PaymentComponent } from './features/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TermsPolicyComponent } from './features/terms-policy/terms-policy.component';
+import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TermsPolicyComponent } from './features/terms-policy/terms-policy.compo
     PlanComponent,
     PaymentComponent,
     TermsPolicyComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,
