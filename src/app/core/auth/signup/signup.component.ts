@@ -90,7 +90,7 @@ export class SignupComponent implements OnInit {
     if (this.isAlreadyLogin) {
       // Update user profile
       const userInfo = this.signupForm.value;
-      userInfo.password = this.userDetails.password;
+      delete userInfo.password;
       userInfo.id = this.userDetails.id;
       userInfo.email = this.userDetails.email;
       this.authService.updateUser(this.signupForm.value).subscribe(
@@ -157,6 +157,25 @@ export class SignupComponent implements OnInit {
     this.isEditing = false;
     this.signupForm.patchValue(this.userDetails); // Reset to original values
     this.signupForm.disable();
+  }
+
+  forgetPassword(){
+    const email: string = this.signupForm.get('email')?.value;
+    const dialogRef = this.dialog.open(OtpDialogComponent, {
+      width: '400px',
+      maxWidth: '400px',
+      disableClose: true,
+      data: { email: email ,forgetPass: true},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.success) {
+        // this.authService.login(this.userDetails);
+        this.router.navigate(['/profile']);
+      } else {
+        console.log('OTP Verification Canceled');
+      }
+    });
   }
 }
 

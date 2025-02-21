@@ -1,28 +1,24 @@
-<!-- <div class="home-container" >
-   -->
-   <div class="home-container" [style.backgroundImage]="'url(assets/coin.png)'">
-  <!-- <img src="assets/groups.png" alt="Team Collaboration" /> -->
+<div 
+  class="home-container" 
+  [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
+>
   <h1>Welcome to Our Network Marketing Platform</h1>
-  <p>Discover the best plans to grow your business.</p>
+  <p>Make your money with team work.</p>
+  <p>Your One time work Make Many time Momey And more ways.</p>
 
-  <!-- Button Container -->
   <div class="button-container">
-    <!-- Login Button (only visible if the user is NOT authenticated) -->
     <button *ngIf="!isAuthenticated" (click)="login()">Login</button>
-
-    <!-- Explore Plans Button -->
     <button (click)="explorePlans()">Explore Plans</button>
   </div>
 </div>
 
-  <!-- Image Gallery -->
-  <div class="image-gallery">
-
-    <img src="assets/groups.png" alt="Team Collaboration" />
-    <img src="assets/shake hand.jpg" alt="Networking" />
-    <img src="assets/linked.jpg" alt="Success Strategies" />
-    <img src="assets/spin wheel.jpg" alt="Financial Planning" />
-    <img src="assets/stairs.png" alt="Success Strategies" />
-    <img src="assets/Ludo.jpg" alt="Marketing Insights" />
-    <img src="assets/about.webp" alt="Business Growth" />
-  </div>
+<!-- Image Gallery -->
+<!-- <div class="image-gallery">
+  <img src="assets/groups.png" alt="Team Collaboration" />
+  <img src="assets/shake hand.jpg" alt="Networking" />
+  <img src="assets/linked.jpg" alt="Success Strategies" />
+  <img src="assets/spin wheel.jpg" alt="Financial Planning" />
+  <img src="assets/stairs.png" alt="Success Strategies" />
+  <img src="assets/Ludo.jpg" alt="Marketing Insights" />
+  <img src="assets/about.webp" alt="Business Growth" />
+</div> -->

@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
   private _isAuthenticated = new BehaviorSubject<boolean>(false); // Default value is false
   public isAuthenticated$: Observable<boolean> = this._isAuthenticated.asObservable();
-
-  private baseUrl: string = 'http://64.227.174.34:9101';
+                            
+  private baseUrl: string = 'https://64.227.174.34:9101';
 
   private _userDetails = new BehaviorSubject<any>(null); // User details observable
   public userDetails$: Observable<any> = this._userDetails.asObservable();
@@ -51,6 +51,10 @@ export class AuthService {
   // Method to verify OTP
   verifyOtp(email:string, otp: string): Observable<any> {
     const url = this.baseUrl +`/moneymining/api/enabled/user?email=${email}&otp=${otp}`;
+    return this.http.post<any>(url, {});
+  }
+  forgetPass(email:string, otp: string, newpass:any): Observable<any> {
+    const url = this.baseUrl +`/moneymining/api/enabled/user?email=${email}&otp=${otp}&newPassword=${newpass}`;
     return this.http.post<any>(url, {});
   }
 

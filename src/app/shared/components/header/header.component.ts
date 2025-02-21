@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class HeaderComponent implements OnInit {
   isMenuOpen = false; // Tracks if the menu is open
   isAuthenticated = false; // Tracks user's authentication status
+  isAdmin: any;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthenticated$.subscribe(
       (status) => (this.isAuthenticated = status)
     );
+    this.isAdmin = this.authService.getUserRole() === 'ADMIN' ? true : false;
   }
 
   // Toggle menu visibility

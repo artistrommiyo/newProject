@@ -17,9 +17,12 @@ header {
 }
 
 .company-logo {
-  width: 30px; /* Adjust as needed */
-  height: 30px; /* Adjust as needed */
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Ensures the image fits well */
   margin-right: 10px;
+  border: 2px solid white; 
 }
 
 .company-name {

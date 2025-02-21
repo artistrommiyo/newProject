@@ -104,6 +104,9 @@
       <button *ngIf="isAlreadyLogin && !isEditing" class="btn btn-secondary" type="button" (click)="enableEdit()">
         Edit Profile
       </button>
+      <button *ngIf="isAlreadyLogin" class="btn btn-secondary" type="button" (click)="forgetPassword()">
+        Forget Password
+      </button>
       <button *ngIf="isAlreadyLogin && isEditing" class="btn btn-secondary" type="button" (click)="cancelEdit()">
         Cancel
       </button>

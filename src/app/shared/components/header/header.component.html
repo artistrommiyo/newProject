@@ -18,7 +18,7 @@
     <button class="close-btn" (click)="toggleMenu()">X</button>
 
     <!-- Side Panel Content -->
-    <ul>
+    <ul *ngIf="!isAdmin">
       <li>
         <a routerLink="/home" [routerLinkActive]="'active'" (click)="toggleMenu()">Home</a>
       </li>
@@ -32,6 +32,23 @@
         <a routerLink="/profile" [routerLinkActive]="'active'" (click)="toggleMenu()">Profile</a>
       </li>
       <li *ngIf="isAuthenticated">
+        <a (click)="logout()">Logout</a>
+      </li>
+    </ul>
+    <ul *ngIf="isAdmin && isAuthenticated">
+      <li>
+        <a routerLink="/home" [routerLinkActive]="'active'" (click)="toggleMenu()">Home</a>
+      </li>
+      <li>
+        <a routerLink="/users" [routerLinkActive]="'active'" (click)="toggleMenu()">Users</a>
+      </li>
+      <li>
+        <a routerLink="/plans" [routerLinkActive]="'active'" (click)="toggleMenu()">Plans</a>
+      </li>
+      <li>
+        <a routerLink="/profile" [routerLinkActive]="'active'" (click)="toggleMenu()">Profile</a>
+      </li>
+      <li>
         <a (click)="logout()">Logout</a>
       </li>
     </ul>

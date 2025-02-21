@@ -1,0 +1,29 @@
+/* ✅ Grid Container */
+.grid-container {
+  /* width: 100%; */
+  /* max-width: 1200px; */
+  margin: auto;
+  height: 100vh; /* Full screen height */
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+}
+
+/* ✅ AG Grid Full Height */
+.full-height-grid {
+  flex: 1;
+  height: 100%;
+}
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+  .grid-container {
+    /* width: 100%; */
+    padding: 1em;
+    height: 100vh;
+  }
+
+  .full-height-grid {
+    height: 100%;
+  }
+}

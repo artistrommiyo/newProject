@@ -13,6 +13,8 @@ import { PaymentComponent } from './features/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TermsPolicyComponent } from './features/terms-policy/terms-policy.component';
 import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
+import { UserDetailsComponent } from './features/user-details/user-details.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy
     PaymentComponent,
     TermsPolicyComponent,
     PrivacyPolicyComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy
     HomeModule,
     SharedModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,14 +14,22 @@ export class OtpDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<OtpDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { email: string },
+    @Inject(MAT_DIALOG_DATA) public data: any | { email: string },
     private fb: FormBuilder,private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.otpForm = this.fb.group({
-      otp: ['', [Validators.required, Validators.pattern(/^\d{4,6}$/)]], // OTP must be 4-6 digits
-    });
+    if(this.data?.forgetPass){
+      this.otpForm = this.fb.group({
+        otp: ['', [Validators.required, Validators.pattern(/^\d{4,6}$/)]],
+        password: [ '', [Validators.required, Validators.minLength(6)],
+        ],// OTP must be 4-6 digits
+      });
+    }else{
+      this.otpForm = this.fb.group({
+        otp: ['', [Validators.required, Validators.pattern(/^\d{4,6}$/)]]// OTP must be 4-6 digits
+      });
+    }
   }
 
   // Getter for OTP control
@@ -66,5 +74,24 @@ sendOtp(): void {
   // Close popup
   closePopup(): void {
     this.dialogRef.close({ success: false }); // Close dialog and return failure
+  }
+
+  forgetPassword(){
+    if (this.otpForm.valid) {
+      this.authService.forgetPass(this.data.email,this.otpForm.value.otp,this.otpForm.value.password).subscribe(
+        (response) => {
+          if (response.status === 200 && response.message === 'User verify successfully'){
+            this.dialogRef.close({ success: true}); // Close popup and return success
+          } else {
+            this.invalidOtp = true; // Set invalid OTP flag
+          }
+        },
+        (error) => {
+          console.error("Error sending OTP:", error);
+        }
+      )
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }
