@@ -19,7 +19,11 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthenticated$.subscribe(
       (status) => (this.isAuthenticated = status)
     );
-    this.isAdmin = this.authService.getUserRole() === 'ADMIN' ? true : false;
+    this.authService.userDetails$.subscribe((userDetails)=>{
+      if(userDetails){
+        this.isAdmin = this.authService.getUserRole() === 'ADMIN' ? true : false;
+      }
+    })
   }
 
   // Toggle menu visibility
