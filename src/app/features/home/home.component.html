@@ -1,24 +1,109 @@
-<div 
-  class="home-container" 
-  [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
->
-  <h1>Welcome to Our Network Marketing Platform</h1>
-  <p>Make your money with team work.</p>
-  <p>Your One time work Make Many time Momey And more ways.</p>
+<div class="home-container">
+  <!-- Main Heading -->
+  <h1>MAKE MY MONEY</h1>
 
-  <div class="button-container">
-    <button *ngIf="!isAuthenticated" (click)="login()">Login</button>
-    <button (click)="explorePlans()">Explore Plans</button>
+  <!-- Navigation Links -->
+  <div class="nav-links">
+    <a routerLink="/about-us">About Us</a>
+    <a routerLink="/our-services">Our Services</a>
+    <a routerLink="/membership">Membership</a>
+    <a routerLink="/investing">Way of Investing</a>
+  </div>
+
+  <!-- First Section: Team Work -->
+  <section class="content-section">
+    <h2>Make Your Money With Team Work</h2>
+    <p>
+      Network marketing is a smart business model where you earn money by referring new customers and building a team, creating a passive income stream. The more your network grows, the higher your earnings—work from anywhere, anytime, with unlimited income potential!
+    </p>
+  </section>
+
+  <!-- Second Section: Shake Hand and Make Money -->
+  <section class="content-section">
+    <h2>SHAKE HAND AND MAKE MONEY</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img *ngFor="let img of images; let i = index" [src]="img" [class.active]="i === currentIndex" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Third Section: How to Work -->
+  <section class="content-section">
+    <h1>HOW TO WORK</h1>
+    <h2>Your one-time work effort creates many-time money ways</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img *ngFor="let img of how_to_work; let i = index" [src]="img" [class.active]="i === currentIndex3" />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>WAY FOR CREATION OF MONEY</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img *ngFor="let img of ['assets/creation_of_money1.png','assets/creation_of_money2.png','assets/creation_of_money3.png','assets/creation_of_money4.png']; let i = index" [src]="img" [class.active]="i === currentIndex" />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Make Your Money With Team Work</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img *ngFor="let img of ['assets/team_work1.png','assets/team_work2.png','assets/team_work3.png']; let i = index" [src]="img" [class.active]="i === currentIndex3" />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>What is Money Moning?</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img [src]="'assets/money_mining.png'" [class.active]="true" />
+      </div>
+    </div>
+    <p>Money Moning is your ultimate smart income platform, where you can earn thousands to lakhs of rupees every month—all from the comfort of your home, at any time, from anywhere! Unlike traditional jobs, this isn't about hard work; it's about smart work.With Money Moning, you make money in two powerful ways:Referral Income – Add new customers, grow your network, and earn unlimited commissions. The bigger your network, the bigger your earnings!Gaming Rewards – Play exciting games like Ludo, Spin, Carrom, Betting, and more to win real cash prizes.This is a zero-investment, high-return opportunity where your success is in your hands. No boss, no fixed hours—just unlimited earning potential!Start today and turn your free time into financial freedom!
+    </p>
+  </section>
+
+  <section class="content-section">
+    <h2>About As</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img [src]="'assets/about_us.png'" [class.active]="true"/>
+      </div>
+    </div>
+    <p>Welcome to Money Moning, a leading network marketing and MLM company that turns your connections and gaming skills into real earnings! At Money Moning, we believe in financial growth through smart networking and entertainment. Our unique referral-based system allows customers to earn money by adding new members to our platform. The more you expand your network, the more you earn!But that’s not all—we also offer exciting opportunities to make money through gaming. Play Ludo, Spin, Carrom, Betting, and many more thrilling games to win cash rewards. Whether you're growing your network or showcasing your gaming skills, Money Moning ensures a fun, rewarding experience for everyone.Join us today and start earning while enjoying the thrill of gaming and networking!
+    </p>
+  </section>
+
+  <section class="content-section">
+    <h2>Why Choose Money Moning?
+    </h2>
+    <div class="slider-container">
+      <div class="slider">
+        <img [src]="'assets/choose_money_mining.png'" [class.active]="true"/>
+      </div>
+    </div>
+    <p>Money Moning is the smartest way to earn money from home with zero investment and unlimited income potential! Here’s why you should join:
+     <br> ✔ Earn Lakhs Monthly – Grow your network and increase your earnings effortlessly.
+     <br> ✔ Work Anytime, Anywhere – No boss, no fixed hours—your income is in your hands!
+     <br> ✔ Multiple Income Streams – Make money through referrals and by playing games like Ludo, Spin, Carrom, Betting, and more.
+     <br>✔ 100% Smart Work, Not Hard Work – No need for experience—just use your smartphone and internet!
+     <br>✔ Trusted & Transparent – Fast payouts and a secure platform ensure a hassle-free experience.
+     <br> Join Money Moning today and turn your time into financial freedom!
+    </p>
+  </section>
+  <div class="slider-container">
+    <div class="slider">
+      <img [src]="'assets/after_one_year.png'" [class.active]="true"/>
+    </div>
+  </div>
+  <div class="slider-container">
+    <div class="slider">
+      <img [src]="'assets/count.png'" [class.active]="true"/>
+    </div>
   </div>
 </div>
-
-<!-- Image Gallery -->
-<!-- <div class="image-gallery">
-  <img src="assets/groups.png" alt="Team Collaboration" />
-  <img src="assets/shake hand.jpg" alt="Networking" />
-  <img src="assets/linked.jpg" alt="Success Strategies" />
-  <img src="assets/spin wheel.jpg" alt="Financial Planning" />
-  <img src="assets/stairs.png" alt="Success Strategies" />
-  <img src="assets/Ludo.jpg" alt="Marketing Insights" />
-  <img src="assets/about.webp" alt="Business Growth" />
-</div> -->

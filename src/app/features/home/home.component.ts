@@ -1,7 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-// import { AuthService } from 'src/app/core/auth/auth.service'; // Adjust path as necessary
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -9,55 +6,23 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  isAuthenticated = false; // Track user's authentication status
-  backgroundImages: string[] = [
-    'assets/coin.png',
-    'assets/groups.png',
-    'assets/shake hand.jpg',
-    'assets/linked.jpg',
-    'assets/spin wheel.jpg',
-    'assets/stairs.png',
-    'assets/Ludo.jpg',
-    'assets/about.webp'
+  images = [
+    'assets/shake_hand_1.png',
+    'assets/shake_hand_2.png',
+    'assets/shake_hand_3.png',
+    'assets/shake_hand_4.png'
   ];
+  how_to_work = ['assets/how_to_work1.png','assets/how_to_work2.png','assets/how_to_work3.png'];
   
-  backgroundImage: string = this.backgroundImages[0];
-  private currentIndex = 0;
+  currentIndex = 0;
+  currentIndex3 = 0;
 
-
-  constructor(
-    private router: Router, 
-    private authService: AuthService,
-    private renderer: Renderer2) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.updateBackground();
     setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.backgroundImages.length;
-      this.updateBackground();
-    }, 3000); 
-    // Subscribe to the authentication status observable
-    this.authService.isAuthenticated$.subscribe(
-      (isAuthenticated) => (this.isAuthenticated = isAuthenticated)
-    );
-  }
-
-  explorePlans() {
-    this.router.navigate(['/plans']);
-  }
-
-  login() {
-    this.router.navigate(['/login']);
-  }
-
-  updateBackground() {
-    const homeContainer = document.querySelector('.home-container');
-    if (homeContainer) {
-      this.renderer.setStyle(
-        homeContainer,
-        'background-image',
-        `url(${this.backgroundImages[this.currentIndex]})`
-      );
-    }
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      this.currentIndex3 = (this.currentIndex3 + 1) % this.how_to_work.length;
+    }, 3000);
   }
 }
