@@ -14,20 +14,20 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     // Listen for navigation events
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Get the state after the navigation ends
-        const navigationState:any = this.router.getCurrentNavigation()?.extras?.state;
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     // Get the state after the navigation ends
+    //     const navigationState:any = this.router.getCurrentNavigation()?.extras?.state;
         
-        if (navigationState?.plan) {
-          // If the plan is passed in state, assign it to selectedPlan
-          this.selectedPlan = navigationState.plan;
-        } else {
-          this.router.navigate(['/plans']);
-          console.log("Plan not found in navigation state");
-        }
-      }
-    });
+    //     if (navigationState?.plan) {
+    //       // If the plan is passed in state, assign it to selectedPlan
+    //       this.selectedPlan = navigationState.plan;
+    //     } else {
+    //       this.router.navigate(['/plans']);
+    //       console.log("Plan not found in navigation state");
+    //     }
+    //   }
+    // });
   }
 
   proceedToPayment() {
